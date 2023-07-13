@@ -1,7 +1,11 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+const pages = fs.readdirSync('./src/pages');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -15,11 +19,16 @@ const config = {
 	devServer: {
 		open: true,
 		host: 'localhost',
+		watchFiles: ["./src/**/*"],
+    		hot: true
 	},
 	plugins: [
-		new HtmlWebpackPlugin({
-			template: 'index.html',
-		}),
+		new CleanWebpackPlugin(),
+		...pages.map(filename => new HtmlWebpackPlugin({
+			inject: 'body',
+			template: path.join('./src/pages/', filename),
+			filename
+		}))
 
 		// Add your plugins here
 		// Learn more about plugins from https://webpack.js.org/configuration/plugins/

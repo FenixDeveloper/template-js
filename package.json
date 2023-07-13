@@ -33,7 +33,7 @@
 		"build:dev": "webpack --mode=development",
 		"build:prod": "webpack --mode=production --node-env=production",
 		"watch": "webpack --watch",
-		"serve": "webpack serve",
+		"start": "webpack serve",
 		"lint": "eslint ./src --ext .js",
 		"lint:fix": "npm run lint -- --fix",
 		"format": "prettier ./src --write",
@@ -42,5 +42,8 @@
 	"lint-staged": {
 		"src/**/*.{js}": "npm run lint",
 		"src/**/*.{js,css,scss,md,html,json}": "npm run format"
+	},
+	"dependencies": {
+		"clean-webpack-plugin": "^4.0.0"
 	}
 }

@@ -13,3 +13,15 @@ yarn build
 ```
 
 to bundle your application
+
+## Run in dev mode
+
+```
+npm run start
+```
+
+or
+
+```
+yarn start
+```
